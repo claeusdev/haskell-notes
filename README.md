@@ -16,16 +16,16 @@ This repository contains a comprehensive, structured guide to learning Haskell p
 |---------|-------|--------|--------------|
 | **01** | [Introduction to Haskell](./01-introduction-to-haskell/) | ✅ Complete | Pure functions, immutability, lazy evaluation |
 | **02** | [Basic Syntax and Types](./02-basic-syntax-and-types/) | ✅ Complete | Type system, pattern matching, lists, tuples |
-| **03** | [Functions and Higher-Order Functions](./03-functions-and-higher-order/) | 🚧 In Progress | Function composition, currying, map/filter/fold |
-| **04** | [Pattern Matching and Recursion](./04-pattern-matching-recursion/) | 📋 Planned | Advanced patterns, recursion schemes |
-| **05** | [Algebraic Data Types](./05-algebraic-data-types/) | 📋 Planned | Custom types, sum/product types, records |
-| **06** | [Type Classes and Polymorphism](./06-type-classes-polymorphism/) | 📋 Planned | Type classes, instances, polymorphism |
-| **07** | [Lazy Evaluation](./07-lazy-evaluation/) | 📋 Planned | Lazy evaluation, infinite structures, performance |
-| **08** | [Monads and Functors](./08-monads-and-functors/) | 📋 Planned | Functors, applicatives, monads, transformers |
+| **03** | [Functions and Higher-Order Functions](./03-functions-and-higher-order/) | ✅ Complete | Function composition, currying, map/filter/fold |
+| **04** | [Pattern Matching and Recursion](./04-pattern-matching-recursion/) | ✅ Complete | Advanced patterns, recursion schemes |
+| **05** | [Algebraic Data Types](./05-algebraic-data-types/) | 🚧 Extensive Content | Custom types, sum/product types, records |
+| **06** | [Type Classes and Polymorphism](./06-type-classes-polymorphism/) | 📝 Core Notes | Type classes, instances, polymorphism |
+| **07** | [Lazy Evaluation](./07-lazy-evaluation/) | 📝 Core Notes | Lazy evaluation, infinite structures, performance |
+| **08** | [Monads and Functors](./08-monads-and-functors/) | 📝 Detailed Notes | Functors, applicatives, monads, transformers |
 | **09** | [Advanced Type System Features](./09-advanced-type-system/) | 📋 Planned | GADTs, type families, phantom types |
 | **10** | [Concurrency and Parallelism](./10-concurrency-parallelism/) | 📋 Planned | STM, threads, parallel programming |
 | **11** | [Performance and Optimization](./11-performance-optimization/) | 📋 Planned | Profiling, strictness, optimization techniques |
-| **12** | [Real-World Applications](./12-real-world-applications/) | 📋 Planned | Web development, databases, system programming |
+| **12** | [Real-World Applications](./12-real-world-applications/) | 📝 Comprehensive Notes | Web development, databases, system programming |
 
 ## 🗂 Repository Structure
 
