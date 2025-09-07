@@ -1,37 +1,115 @@
-# Monads and Functors - Notes
+# Monads and Functors - Comprehensive Notes
 
 ## Overview
 
-Monads and Functors are abstract patterns that capture common computation structures. They provide a mathematical foundation for handling effects, sequencing operations, and composing computations in a pure functional language.
+Monads and Functors are abstract patterns that capture common computation structures. They provide a mathematical foundation for handling effects, sequencing operations, and composing computations in a pure functional language. Understanding these abstractions is crucial for writing elegant, composable, and maintainable Haskell code.
 
-## Functors
+**Key Learning Objectives:**
+- Master the Functor type class and its laws
+- Understand Applicative functors and their applications
+- Learn the Monad type class and monadic patterns
+- Explore common monads and their use cases
+- Understand monad transformers for combining effects
+- Apply monadic patterns to solve real-world problems
 
-### The Functor Type Class
+## Functors: Mapping Over Contexts
+
+### The Functor Type Class: The Foundation
+
+A Functor is a type class that represents types that can be mapped over. It provides a way to apply functions to values inside a context without changing the context itself.
+
+**Functor Definition and Laws:**
 ```haskell
 class Functor f where
     fmap :: (a -> b) -> f a -> f b
+    
+    -- Infix operator
+    (<$>) :: (a -> b) -> f a -> f b
+    (<$>) = fmap
 
--- Functor Laws:
--- 1. fmap id = id
--- 2. fmap (f . g) = fmap f . fmap g
+-- Functor Laws (must be satisfied by all instances):
+-- 1. Identity: fmap id = id
+-- 2. Composition: fmap (f . g) = fmap f . fmap g
 ```
 
-### Common Functors
+**Understanding Functors:**
+- **Context Preservation**: The structure/context is preserved
+- **Function Application**: Functions are applied to values inside the context
+- **Composability**: Functors compose naturally
+- **Laws**: Ensure predictable behavior
+
+### Common Functors: Building Blocks
+
+**Maybe Functor:**
 ```haskell
--- Maybe Functor
+-- Maybe represents optional values
 instance Functor Maybe where
     fmap _ Nothing = Nothing
     fmap f (Just x) = Just (f x)
 
--- List Functor
+-- Usage examples
+safeIncrement :: Maybe Int -> Maybe Int
+safeIncrement = fmap (+1)
+
+-- fmap (+1) Nothing = Nothing
+-- fmap (+1) (Just 5) = Just 6
+
+-- Chaining operations
+safeDoubleIncrement :: Maybe Int -> Maybe Int
+safeDoubleIncrement = fmap (+1) . fmap (+1)
+-- or equivalently: fmap ((+1) . (+1))
+```
+
+**List Functor:**
+```haskell
+-- Lists represent collections
 instance Functor [] where
     fmap = map
 
--- IO Functor
+-- Usage examples
+doubleAll :: [Int] -> [Int]
+doubleAll = fmap (*2)
+
+-- fmap (*2) [1,2,3] = [2,4,6]
+
+-- Chaining operations
+processNumbers :: [Int] -> [Int]
+processNumbers = fmap (*2) . fmap (+1)
+-- or equivalently: fmap ((*2) . (+1))
+```
+
+**IO Functor:**
+```haskell
+-- IO represents computations with side effects
 instance Functor IO where
     fmap f action = do
         x <- action
         return (f x)
+
+-- Usage examples
+readAndProcess :: FilePath -> IO String
+readAndProcess path = fmap (map toUpper) (readFile path)
+
+-- Chaining IO operations
+readAndProcessFile :: FilePath -> IO [String]
+readAndProcessFile path = fmap lines (readFile path)
+```
+
+**Either Functor:**
+```haskell
+-- Either represents computations that can fail
+instance Functor (Either e) where
+    fmap _ (Left e) = Left e
+    fmap f (Right x) = Right (f x)
+
+-- Usage examples
+safeParse :: String -> Either String Int
+safeParse s = case reads s of
+    [(n, "")] -> Right n
+    _ -> Left ("Invalid number: " ++ s)
+
+safeIncrementEither :: Either String Int -> Either String Int
+safeIncrementEither = fmap (+1)
 ```
 
 ## Applicative Functors
